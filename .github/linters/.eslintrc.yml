@@ -1,0 +1,90 @@
+# prettier-ignore
+---
+#############################
+#############################
+## JavaScript Linter rules ##
+#############################
+#############################
+
+extends:
+  ## The rules added by - eslint:recommended are shown as comments below
+  - eslint:recommended
+
+############
+# Env Vars #
+############
+env:
+  browser: true
+  es6: true
+  jest: true
+
+###############
+# Global Vars #
+###############
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+###############
+# Parser vars #
+###############
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+
+###########
+# Plugins #
+###########
+plugins:
+  - '@typescript-eslint'
+
+
+  
+#########
+# Rules #
+#########
+rules:
+  no-undef: error
+  no-unused-vars: warn
+  no-redeclare: warn  
+
+#######################
+# Ignores these files #
+#######################
+ignorePatterns:
+  - "**/*.min.js"
+  - "**/*.min.css"
+
+
+##############################
+# Overrides for JSON parsing #
+##############################
+overrides:
+
+  # JSON files
+  - files:
+      - "*.json"
+    extends:
+      - plugin:jsonc/recommended-with-json
+    parser: jsonc-eslint-parser
+    parserOptions:
+      jsonSyntax: JSON
+
+  # JSONC files
+  - files:
+      - "*.jsonc"
+    extends:
+      - plugin:jsonc/recommended-with-jsonc
+    parser: jsonc-eslint-parser
+    parserOptions:
+      jsonSyntax: JSONC
+
+  # JSON5 files
+  - files:
+      - "*.json5"
+    extends:
+      - plugin:jsonc/recommended-with-json5
+    parser: jsonc-eslint-parser
+    parserOptions:
+      jsonSyntax: JSON5
